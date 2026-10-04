@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EngineerPath AI</title>
 <style>
 :root{--bg:#f6f8fc;--sf:#fff;--soft:#edf1ff;--tx:#182233;--mu:#697386;--pr:#1e2a78;--pl:#4f46e5;--teal:#06b6d4;--gr:#35a866;--or:#ed8936;--co:#ff6b6b;--bd:#e5e9f1;--sb:#0b1437;--sh:0 12px 30px rgba(37,48,78,.08)}
@@ -74,9 +74,84 @@ input[aria-invalid=true]{border-color:var(--co)}.lk{background:none;color:var(--
 .cb{min-height:320px;max-height:60vh}.m{max-width:min(88%,780px);overflow-wrap:anywhere}.m.e{background:#fdeaea;color:#a93226}.m pre{white-space:pre-wrap;overflow:auto;background:rgba(0,0,0,.06);padding:8px;border-radius:8px}
 .chatbar{display:flex;gap:8px;align-items:stretch;margin-top:8px}.chatbar textarea{flex:1;min-height:56px;font-family:inherit;resize:vertical}
 details pre{white-space:pre-wrap;font-size:12.5px;max-height:220px;overflow:auto}
+
+/* ===== v5: mobile / responsive pass (desktop >980px untouched) ===== */
+.drawer-close{display:none}
+@media(max-width:980px){
+ .sidebar{height:100vh;height:100dvh;overflow-y:auto;overscroll-behavior:contain;max-width:88vw;z-index:50}
+ .sidebar-backdrop{z-index:40}
+ .sidebar:not(.open){box-shadow:none;visibility:hidden;transition:transform .2s,visibility 0s .2s}
+ .sidebar.open{visibility:visible}
+ body.nav-open{overflow:hidden}
+ .menu{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:0 12px;font-size:20px;line-height:1;color:var(--tx);flex:0 0 auto}
+ .drawer-close{display:inline-flex;align-items:center;justify-content:center;position:absolute;top:16px;right:12px;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,.1);color:#e7ebff;font-size:18px;z-index:2}
+ .drawer-close:hover{background:rgba(255,255,255,.2)}
+ .sidebar{padding:20px 16px}
+ .sidebar .brand{padding-right:48px;gap:10px}.sidebar .brand b{font-size:17px}.sidebar .nav-groups{margin-top:20px}
+}
+@media(max-width:768px){
+ html,body{max-width:100%;overflow-x:hidden}
+ .main{padding:16px 16px 28px}
+ body.landing .main{padding:16px}
+ .card{padding:16px;border-radius:16px}
+ /* header */
+ .top{flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:14px}
+ .top>div:first-child{flex:1 1 100%;min-width:0}
+ .top-actions{order:-1;flex:1 1 100%;flex-wrap:wrap;gap:8px}
+ .top-actions .menu{order:-1}
+ #who{flex:0 0 auto;max-width:60vw;min-height:44px;padding:0 14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ #saved{margin-left:auto;flex:0 0 auto;white-space:nowrap}
+ .top h2{margin-top:4px;font-size:clamp(22px,6.2vw,28px);line-height:1.2;overflow-wrap:anywhere}
+ .crumb{font-size:13px;line-height:1.4;overflow-wrap:anywhere}
+ /* controls */
+ .btn{min-height:44px;max-width:100%}
+ .btn.sm2{min-height:44px;padding:8px 14px}
+ button.chip{min-height:44px}
+ .chip{display:inline-flex;align-items:center;max-width:100%;text-align:left}
+ .tabs{gap:8px}.tabs button{flex:1 1 auto;min-height:44px;padding:8px 14px}
+ input,select{min-height:44px}
+ .nav2{flex-wrap:wrap;gap:10px}.nav2 .btn{flex:1 1 140px}
+ .cta .btn{flex:1 1 auto}
+ .banner{flex-wrap:wrap}
+ .row{align-items:stretch}
+ .lt{gap:10px;flex-wrap:wrap}
+ .hero{gap:20px;padding:12px 0}.hero p{font-size:16px}
+ .sec{font-size:20px;margin:26px 0 12px}
+ /* progress steps: 3 columns, labels wrap inside */
+ .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+ .step{min-width:0!important;min-height:44px;display:flex;align-items:center;justify-content:center;padding:6px 4px;font-size:13px;line-height:1.25;overflow-wrap:anywhere;hyphens:auto}
+ /* chat */
+ .m{max-width:94%}
+ .cb{min-height:240px}
+ /* wide content scrolls inside its own box, page never does */
+ div[style*="overflow:auto"]{max-width:100%;-webkit-overflow-scrolling:touch}
+ pre,code{overflow-wrap:anywhere}
+ .rpaper{padding:16px;min-height:0}
+ .set{grid-template-columns:minmax(0,1fr)}
+ [style*="display:flex"]{flex-wrap:wrap}
+}
+@media(max-width:620px){
+ .main{padding:16px}
+ .chatbar{flex-direction:column}.chatbar .btn{width:100%}
+ .set .card,.auth .card{min-width:0}
+}
+@media(max-width:480px){
+ .big{font-size:26px}
+ .card h3{font-size:17px}
+ .cta .btn,.nav2 .btn{flex:1 1 100%}
+ .row>div{flex:1 1 100%}
+ .step{font-size:12.5px}
+ .hero h1{font-size:clamp(28px,8.5vw,36px)}
+ .btn.big2{width:100%}
+}
+@media(max-width:340px){
+ .main{padding:16px 12px}
+ .step{font-size:12px;padding:6px 2px}
+ #saved{font-size:11.5px}
+}
 </style></head><body>
-<div class="app"><aside class="sidebar" id="sb"><div class="brand" onclick="S.seen=0;render()"><div class="logo">🎓</div><div class="brand-copy"><b>EngineerPath AI</b><small>Engineering Edition</small></div></div><nav id="nav" aria-label="Primary navigation"></nav></aside><div class="sidebar-backdrop" onclick="sb.classList.remove('open')" aria-hidden="true"></div>
-<main class="main"><div class="top"><div><div class="crumb" id="crumb"></div><h2 id="title"></h2></div><div style="display:flex;gap:8px;align-items:center"><button class="btn alt sm2" id="who" onclick="go('account')"></button><span class="pill" id="saved"></span><button class="menu" aria-label="Open navigation" aria-controls="sb" onclick="sb.classList.toggle('open')">☰</button></div></div><div id="view"></div></main></div>
+<div class="app"><aside class="sidebar" id="sb"><button class="drawer-close" type="button" aria-label="Close navigation" onclick="navClose()">✕</button><div class="brand" onclick="S.seen=0;render()"><div class="logo">🎓</div><div class="brand-copy"><b>EngineerPath AI</b><small>Engineering Edition</small></div></div><nav id="nav" aria-label="Primary navigation"></nav></aside><div class="sidebar-backdrop" onclick="navClose()" aria-hidden="true"></div>
+<main class="main"><div class="top"><div><div class="crumb" id="crumb"></div><h2 id="title"></h2></div><div class="top-actions" style="display:flex;gap:8px;align-items:center"><button class="btn alt sm2" id="who" onclick="go('account')"></button><span class="pill" id="saved"></span><button class="menu" id="menuBtn" type="button" aria-label="Open navigation" aria-controls="sb" aria-expanded="false" onclick="navToggle()">☰</button></div></div><div id="view"></div></main></div>
 <script>
 //#ENGINE
 let KEY='careermap_v2';const DAY=864e5;
@@ -274,11 +349,11 @@ window.demo=n=>{const d=DEMO[n];S=Object.assign(blank(),JSON.parse(JSON.stringif
 window.hardReset=()=>{if(confirm('Erase all data?')){S=blank();save();render()}};
 window.saveComp=()=>{try{S.comp=JSON.parse($('compj').value);save();alert('Company configuration saved')}catch(e){alert('Invalid JSON')}};
 function nav(){const icons={dashboard:'⌂',roadmap:'◫',careers:'⌕',projects:'▣',placement:'◎',resume:'▤',assistant:'✦',profile:'◉',map:'⌘',gap:'▥'};
- const item=k=>`<button class="nav ${S.view===k?'on':''}" onclick="go('${k}');sb.classList.remove('open')"><span class="nav-icon" aria-hidden="true">${icons[k]}</span><span class="nav-label">${V[k]}</span></button>`;
+ const item=k=>`<button class="nav ${S.view===k?'on':''}" onclick="go('${k}');navClose()"><span class="nav-icon" aria-hidden="true">${icons[k]}</span><span class="nav-label">${V[k]}</span></button>`;
  const primary=['dashboard','roadmap','careers','projects','placement','resume','assistant','profile'];
  const secondary=['map','gap'];
  $('nav').innerHTML=`<div class="nav-groups"><div class="nav-primary">${primary.map(item).join('')}</div><div class="nav-divider" role="separator"></div><div class="nav-secondary">${secondary.map(item).join('')}</div></div>`}
-function head(){const s=S.view;$('title').textContent=V[s];$('crumb').innerHTML=`<a onclick="go('dashboard')">Home</a> › ${V[s]}${s!=='dashboard'?' · <a onclick="history.back?go(\'dashboard\'):0">← Back to dashboard</a>':''}`;$('saved').textContent=S.savedAt?'Saved '+new Date(S.savedAt).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}):'Not saved yet'}
+function head(){const s=S.view;$('title').textContent=V[s];$('crumb').innerHTML=`<a onclick="go('dashboard')">Home</a> › ${V[s]}${s!=='dashboard'&&!matchMedia('(max-width:768px)').matches?' · <a onclick="history.back?go(\'dashboard\'):0">← Back to dashboard</a>':''}`;$('saved').textContent=S.savedAt?'Saved '+new Date(S.savedAt).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}):'Not saved yet'}
 function dash(){const id=goal(),c=C[id],m=matches(),top=m.find(x=>x.id===id),g=gaps().filter(x=>x.g>0).slice(0,4),rd=roadmap(),dn=rd.filter(x=>x.done).length,sr=skillReady(),pp=placePct(),na=nextAction(),nt=nextTopic(id),pr=projects()[0],sc=S.sc;
  return`${S.view&&S.assessed?'':`<div class="banner"><span>👋 Complete your profile to unlock personalised results, or load a demo student.</span><button class="btn sm2" onclick="go('profile')">Start profile</button></div>`}
 <div class="card" style="background:linear-gradient(135deg,var(--pr),var(--pl));color:#fff"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px"><div><div class="sm" style="opacity:.8">Where am I now?</div><div class="big">${S.p.name?'Hi, '+S.p.name:'Welcome'} · ${S.p.branch}, ${S.p.year} year</div><div>Stage: <b>${stage()}</b> · Profile ${profPct()}% complete</div></div><div style="text-align:right"><div class="sm" style="opacity:.8">Recommended next action</div><b>${na[0]}</b><br><button class="btn sm2 alt" style="margin-top:8px" onclick="go('${na[1]}')">Go →</button></div></div></div>
@@ -371,7 +446,7 @@ const X=k=>(S[k]=S[k]||{}),XV={},DAYS=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'
 const dl=(n,c,t)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()},url=u=>/^https?:\/\//i.test(u||'')?u:'';
 nav=function(){const ic={dashboard:'⌂',profile:'◉',careers:'○',map:'⌘',gap:'◈',roadmap:'↗',planner:'◷',projects:'▣',placement:'✓',jobs:'▤',resume:'✎',assistant:'◐',community:'☺',mentor:'⚑',settings:'⚙',account:'☻'};
  const G=[['Engineering workspace',['dashboard','profile','careers','map','gap','roadmap','planner','projects']],['Placement preparation',['placement','jobs','resume','assistant']],['Community & support',['community','mentor']],['Account',['account','settings']]];
- $('nav').innerHTML='<div class="nav-groups">'+G.map(([t,a])=>'<div class="grp">'+t+'</div><div class="nav-primary">'+a.map(k=>`<button class="nav ${S.view===k?'on':''}" onclick="go('${k}');sb.classList.remove('open')"><span class="nav-icon" aria-hidden="true">${ic[k]}</span><span class="nav-label">${V[k]}</span></button>`).join('')+'</div>').join('')+'<div class="demo-note"><b>Demo prototype</b>This browser-only version stores sample progress in localStorage. Recommendations are educational guidance, not placement guarantees.</div></div>'};
+ $('nav').innerHTML='<div class="nav-groups">'+G.map(([t,a])=>'<div class="grp">'+t+'</div><div class="nav-primary">'+a.map(k=>`<button class="nav ${S.view===k?'on':''}" onclick="go('${k}');navClose()"><span class="nav-icon" aria-hidden="true">${ic[k]}</span><span class="nav-label">${V[k]}</span></button>`).join('')+'</div>').join('')+'<div class="demo-note"><b>Demo prototype</b>This browser-only version stores sample progress in localStorage. Recommendations are educational guidance, not placement guarantees.</div></div>'};
 // 15-question padding for technical test
 {const t0=techQs;techQs=function(){const L=t0();if(L.length<15){const h=new Set(L.map(x=>x.q));TB.filter(q=>!h.has(q.q)).slice(0,15-L.length).forEach(q=>L.push({t:q.tag,q:q.q,o:q.o,a:q.a}))}return L}}
 // ---- Weekly planner
@@ -549,7 +624,7 @@ window.exitDemo=()=>{try{localStorage.removeItem(KEY)}catch(e){}KEY=window._rk;w
 // Navigation order
 nav=function(){const ic={dashboard:'⌂',profile:'◉',careers:'○',map:'⌘',gap:'◈',roadmap:'↗',assistant:'◐',planner:'◷',projects:'▣',placement:'✓',jobs:'▤',resume:'✎',community:'☺',mentor:'⚑',settings:'⚙',account:'☻'};
  const G=[['',['dashboard','profile','careers','map','gap','roadmap','assistant','planner','projects']],['Placement preparation',['placement','jobs','resume']],['Community & support',['community','mentor']],['Account',['account','settings']]];
- $('nav').innerHTML='<div class="nav-groups">'+G.map(([t,a])=>(t?'<div class="grp">'+t+'</div>':'')+'<div class="nav-primary">'+a.map(k=>`<button class="nav ${S.view===k?'on':''}" onclick="go('${k}');sb.classList.remove('open')"><span class="nav-icon" aria-hidden="true">${ic[k]}</span><span class="nav-label">${V[k]}</span></button>`).join('')+'</div>').join('')+'<div class="demo-note"><b>Your data</b>Saved in this browser. Recommendations are guidance, not placement guarantees.</div></div>'};
+ $('nav').innerHTML='<div class="nav-groups">'+G.map(([t,a])=>(t?'<div class="grp">'+t+'</div>':'')+'<div class="nav-primary">'+a.map(k=>`<button class="nav ${S.view===k?'on':''}" onclick="go('${k}');navClose()"><span class="nav-icon" aria-hidden="true">${ic[k]}</span><span class="nav-label">${V[k]}</span></button>`).join('')+'</div>').join('')+'<div class="demo-note"><b>Your data</b>Saved in this browser. Recommendations are guidance, not placement guarantees.</div></div>'};
 // One roadmap object feeds Home, Dashboard, Map, Planner, Assistant
 const rmStat=()=>{const id=goal(),rd=roadmap(),dn=rd.filter(x=>x.done).length,un=rd.filter(x=>!x.done);return{id,rd,dn,pct:pc(dn,rd.length),cur:un[0],nxt:un[1]}};
 {const d1=dashV;dashV=()=>{const r=rmStat(),g=gaps().filter(x=>x.g>0)[0],m=matches().find(x=>x.id===r.id);return d1()+`<div class="card mt"><h3>AI recommendation</h3><div class="sm"><b>Roadmap ${r.pct}%</b> · ${r.dn}/${r.rd.length} topics · Current: <b>${r.cur?esc(r.cur.t):'complete'}</b> · Then: ${r.nxt?esc(r.nxt.t):'—'}</div><div class="sm mt">${g?'Biggest gap for <b>'+esc(C[r.id].n)+'</b>: <b>'+esc(g.k)+'</b> ('+g.cur+'/'+g.r+'). ':''}${m?esc(m.R.slice(0,2).join('. '))+'.':''}</div><div class="sm mu mt">Branch: ${esc(bk().ab)} · Assessment score: ${S.assessed?asm()+'%':'not completed'}</div></div>`}}
@@ -569,4 +644,12 @@ async function boot(){const u=await AuthAPI.session();if(u){AU.user=u;KEY=GK+':'
 boot();
 
 }
+
+/* ===== mobile drawer ===== */
+(function(){const mq=matchMedia('(max-width:980px)');
+window.navClose=function(){const b=document.getElementById('menuBtn');sb.classList.remove('open');document.body.classList.remove('nav-open');if(b){b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open navigation')}};
+window.navToggle=function(){const o=!sb.classList.contains('open');sb.classList.toggle('open',o);document.body.classList.toggle('nav-open',o);const b=document.getElementById('menuBtn');b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close navigation':'Open navigation');if(o){const f=sb.querySelector('.drawer-close');f&&f.focus()}else b.focus()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&sb.classList.contains('open')){navClose();const b=document.getElementById('menuBtn');b&&b.focus()}});
+matchMedia('(max-width:768px)').addEventListener&&matchMedia('(max-width:768px)').addEventListener('change',()=>{try{head()}catch(e){}});
+(mq.addEventListener?mq.addEventListener('change',e=>{if(!e.matches)navClose()}):mq.addListener(e=>{if(!e.matches)navClose()}));})();
 </script></body></html>
